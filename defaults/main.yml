@@ -1,0 +1,5 @@
+app_name: Test
+lc_security_group: "{{ec2_security_group}}"
+lc_ami_image_id: "{{ami.image_id}}"
+lc_key_name: "{{ec2_key_name}}"
+lc_region: "{{ec2_region}}"
