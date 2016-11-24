@@ -21,7 +21,7 @@
 
 - name: combine A and B variables
   set_fact:
-    lc: "{{ lc1 if {{lc_assign_public_ip}} is defined else lc2 }}"  
+    lc: "{{ lc1 if lc_assign_public_ip is defined else lc2 }}"  
 
 - debug:
     msg: "{{lc}}"
