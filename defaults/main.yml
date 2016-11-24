@@ -4,3 +4,4 @@ lc_ami_image_id: "{{ami.image_id}}"
 lc_key_name: "{{ec2_key_name}}"
 lc_region: "{{ec2_region}}"
 #lc_assign_public_ip: default
+lc_instance_type: t2.micro
