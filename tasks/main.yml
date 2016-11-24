@@ -6,7 +6,7 @@
     instance_type: t2.nano
     region: "{{lc_region}}"
     assign_public_ip: "{{lc_assign_public_ip}}"
-  register: lc
+  register: lc1
   when: "{{lc_assign_public_ip}} is defined"
 
 - ec2_lc:
@@ -16,8 +16,12 @@
     security_groups: ['{{lc_security_group}}']
     instance_type: t2.nano
     region: "{{lc_region}}"
-  register: lc
+  register: lc2
   when: "{{lc_assign_public_ip}} is not defined"
+
+- name: combine A and B variables
+  set_fact:
+    lc: "{{ lc1 if {{lc_assign_public_ip}} is defined else lc2 }}"  
 
 - debug:
     msg: "{{lc}}"
