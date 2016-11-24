@@ -5,7 +5,19 @@
     security_groups: ['{{lc_security_group}}']
     instance_type: t2.nano
     region: "{{lc_region}}"
+    assign_public_ip: "{{lc_assign_public_ip}}"
   register: lc
+  when: "{{lc_assign_public_ip}} is defined"
+
+- ec2_lc:
+    name: "{{app_name}}-{{ ansible_date_time.iso8601 | regex_replace('[^a-zA-Z0-9]', '-') }}"
+    image_id: "{{lc_ami_image_id}}"
+    key_name: "{{lc_key_name}}"
+    security_groups: ['{{lc_security_group}}']
+    instance_type: t2.nano
+    region: "{{lc_region}}"
+  register: lc
+  when: "{{lc_assign_public_ip}} is not defined"
 
 - debug:
     msg: "{{lc}}"
